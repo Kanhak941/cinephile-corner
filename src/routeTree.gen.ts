@@ -9,13 +9,49 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WatchlistRouteImport } from './routes/watchlist'
+import { Route as TrendingRouteImport } from './routes/trending'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as FriendsRouteImport } from './routes/friends'
+import { Route as FollowingRouteImport } from './routes/following'
 import { Route as FilmsRouteImport } from './routes/films'
+import { Route as DiaryRouteImport } from './routes/diary'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FilmIdRouteImport } from './routes/film.$id'
 
+const WatchlistRoute = WatchlistRouteImport.update({
+  id: '/watchlist',
+  path: '/watchlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrendingRoute = TrendingRouteImport.update({
+  id: '/trending',
+  path: '/trending',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FriendsRoute = FriendsRouteImport.update({
+  id: '/friends',
+  path: '/friends',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FollowingRoute = FollowingRouteImport.update({
+  id: '/following',
+  path: '/following',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FilmsRoute = FilmsRouteImport.update({
   id: '/films',
   path: '/films',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiaryRoute = DiaryRouteImport.update({
+  id: '/diary',
+  path: '/diary',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,41 +67,135 @@ const FilmIdRoute = FilmIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/diary': typeof DiaryRoute
   '/films': typeof FilmsRoute
+  '/following': typeof FollowingRoute
+  '/friends': typeof FriendsRoute
+  '/settings': typeof SettingsRoute
+  '/trending': typeof TrendingRoute
+  '/watchlist': typeof WatchlistRoute
   '/film/$id': typeof FilmIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/diary': typeof DiaryRoute
   '/films': typeof FilmsRoute
+  '/following': typeof FollowingRoute
+  '/friends': typeof FriendsRoute
+  '/settings': typeof SettingsRoute
+  '/trending': typeof TrendingRoute
+  '/watchlist': typeof WatchlistRoute
   '/film/$id': typeof FilmIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/diary': typeof DiaryRoute
   '/films': typeof FilmsRoute
+  '/following': typeof FollowingRoute
+  '/friends': typeof FriendsRoute
+  '/settings': typeof SettingsRoute
+  '/trending': typeof TrendingRoute
+  '/watchlist': typeof WatchlistRoute
   '/film/$id': typeof FilmIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/films' | '/film/$id'
+  fullPaths:
+    | '/'
+    | '/diary'
+    | '/films'
+    | '/following'
+    | '/friends'
+    | '/settings'
+    | '/trending'
+    | '/watchlist'
+    | '/film/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/films' | '/film/$id'
-  id: '__root__' | '/' | '/films' | '/film/$id'
+  to:
+    | '/'
+    | '/diary'
+    | '/films'
+    | '/following'
+    | '/friends'
+    | '/settings'
+    | '/trending'
+    | '/watchlist'
+    | '/film/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/diary'
+    | '/films'
+    | '/following'
+    | '/friends'
+    | '/settings'
+    | '/trending'
+    | '/watchlist'
+    | '/film/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DiaryRoute: typeof DiaryRoute
   FilmsRoute: typeof FilmsRoute
+  FollowingRoute: typeof FollowingRoute
+  FriendsRoute: typeof FriendsRoute
+  SettingsRoute: typeof SettingsRoute
+  TrendingRoute: typeof TrendingRoute
+  WatchlistRoute: typeof WatchlistRoute
   FilmIdRoute: typeof FilmIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/watchlist': {
+      id: '/watchlist'
+      path: '/watchlist'
+      fullPath: '/watchlist'
+      preLoaderRoute: typeof WatchlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trending': {
+      id: '/trending'
+      path: '/trending'
+      fullPath: '/trending'
+      preLoaderRoute: typeof TrendingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/friends': {
+      id: '/friends'
+      path: '/friends'
+      fullPath: '/friends'
+      preLoaderRoute: typeof FriendsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/following': {
+      id: '/following'
+      path: '/following'
+      fullPath: '/following'
+      preLoaderRoute: typeof FollowingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/films': {
       id: '/films'
       path: '/films'
       fullPath: '/films'
       preLoaderRoute: typeof FilmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diary': {
+      id: '/diary'
+      path: '/diary'
+      fullPath: '/diary'
+      preLoaderRoute: typeof DiaryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +217,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DiaryRoute: DiaryRoute,
   FilmsRoute: FilmsRoute,
+  FollowingRoute: FollowingRoute,
+  FriendsRoute: FriendsRoute,
+  SettingsRoute: SettingsRoute,
+  TrendingRoute: TrendingRoute,
+  WatchlistRoute: WatchlistRoute,
   FilmIdRoute: FilmIdRoute,
 }
 export const routeTree = rootRouteImport
