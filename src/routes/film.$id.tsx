@@ -61,15 +61,25 @@ function FilmDetail() {
           {/* Poster */}
           <div
             className="relative aspect-[2/3] w-full max-w-[280px] overflow-hidden rounded-lg ring-1 ring-border bg-card"
-            style={{ boxShadow: "var(--shadow-poster), var(--shadow-glow)" }}
+            style={{
+              boxShadow: "var(--shadow-poster), var(--shadow-glow)",
+              backgroundImage: posters[film.id] ? undefined : `linear-gradient(135deg, ${film.palette[0]}, ${film.palette[1]})`,
+            }}
           >
-            <img
-              src={posters[film.id]}
-              alt={`${film.title} poster`}
-              width={768}
-              height={1152}
-              className="h-full w-full object-cover"
-            />
+            {posters[film.id] ? (
+              <img
+                src={posters[film.id]}
+                alt={`${film.title} poster`}
+                width={768}
+                height={1152}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <div className="flex h-full w-full flex-col justify-end p-5">
+                <p className="font-display text-2xl leading-tight text-white drop-shadow-lg">{film.title}</p>
+                <p className="mt-2 text-xs uppercase tracking-widest text-white/70">{film.year}</p>
+              </div>
+            )}
           </div>
 
           {/* Info */}
