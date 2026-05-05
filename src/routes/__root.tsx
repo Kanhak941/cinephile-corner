@@ -37,6 +37,10 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Reelist — A cinephile's diary" },
+      { name: "twitter:description", content: "Discover, track and celebrate the films you love." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8a102f32-b5da-45f9-a1d5-9a43c5f11456/id-preview-b1300f64--812a4f8d-ed76-4bb5-bf0d-cde903394d92.lovable.app-1777973224053.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8a102f32-b5da-45f9-a1d5-9a43c5f11456/id-preview-b1300f64--812a4f8d-ed76-4bb5-bf0d-cde903394d92.lovable.app-1777973224053.png" },
     ],
     links: [
       {
