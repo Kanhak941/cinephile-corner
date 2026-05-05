@@ -39,11 +39,12 @@ function FilmsPage() {
   const filtered = genre ? films.filter((f) => f.genres.includes(genre)) : films;
   const visible = [...filtered].sort((a, b) => {
     switch (sort) {
-      case "rating": return b.rating - a.rating;
       case "newest": return b.year - a.year;
       case "oldest": return a.year - b.year;
       case "shortest": return a.runtime - b.runtime;
       case "title": return a.title.localeCompare(b.title);
+      case "rating":
+      default: return b.rating - a.rating;
     }
   });
 
@@ -65,9 +66,7 @@ function FilmsPage() {
               id="sort"
               value={sort}
               onChange={(e) =>
-                navigate({
-                  search: (prev) => ({ ...prev, sort: e.target.value as typeof sort }),
-                })
+                navigate({ search: (prev: { genre?: string; sort: typeof sort }) => ({ ...prev, sort: e.target.value as typeof sort }) })
               }
               className="rounded-full border border-border bg-card px-4 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
             >
@@ -81,7 +80,7 @@ function FilmsPage() {
         <div className="scrollbar-hide mb-10 flex gap-2 overflow-x-auto pb-2">
           <Link
             to="/films"
-            search={(prev) => ({ ...prev, genre: undefined })}
+            search={(prev: { genre?: string; sort: typeof sort }) => ({ ...prev, genre: undefined })}
             className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
               !genre ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:text-foreground"
             }`}
@@ -92,7 +91,7 @@ function FilmsPage() {
             <Link
               key={g}
               to="/films"
-              search={(prev) => ({ ...prev, genre: g })}
+              search={(prev: { genre?: string; sort: typeof sort }) => ({ ...prev, genre: g })}
               className={`rounded-full border px-4 py-1.5 text-sm whitespace-nowrap transition-colors ${
                 genre === g ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:text-foreground"
               }`}
