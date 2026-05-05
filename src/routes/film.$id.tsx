@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { filmsById, films } from "@/data/films";
 import { Header } from "@/components/Header";
 import { Poster } from "@/components/Poster";
+import { posters } from "@/data/posters";
 import { Star, Clock, Calendar, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/film/$id")({
@@ -59,21 +60,16 @@ function FilmDetail() {
         <div className="grid gap-10 md:grid-cols-[280px_1fr]">
           {/* Poster */}
           <div
-            className="relative aspect-[2/3] w-full max-w-[280px] overflow-hidden rounded-lg ring-1 ring-border"
-            style={{
-              backgroundImage: `linear-gradient(135deg, ${film.palette[0]} 0%, ${film.palette[1]} 100%)`,
-              boxShadow: "var(--shadow-poster), var(--shadow-glow)",
-            }}
+            className="relative aspect-[2/3] w-full max-w-[280px] overflow-hidden rounded-lg ring-1 ring-border bg-card"
+            style={{ boxShadow: "var(--shadow-poster), var(--shadow-glow)" }}
           >
-            <div className="absolute inset-0 flex flex-col justify-between p-6">
-              <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/70">
-                {film.genres[0]}
-              </div>
-              <div>
-                <h2 className="font-display text-3xl leading-tight text-white">{film.title}</h2>
-                <p className="mt-1 text-sm text-white/80">{film.year}</p>
-              </div>
-            </div>
+            <img
+              src={posters[film.id]}
+              alt={`${film.title} poster`}
+              width={768}
+              height={1152}
+              className="h-full w-full object-cover"
+            />
           </div>
 
           {/* Info */}
