@@ -3,13 +3,13 @@ import { Film, TrendingUp, Bookmark, BookOpen, UserPlus, Users, Settings, Compas
 
 const navItems = [
   { to: "/", label: "Discover", icon: Compass, exact: true },
-  { to: "/films", label: "Films", icon: Clapperboard },
-  { to: "/trending", label: "Trending", icon: TrendingUp },
-  { to: "/watchlist", label: "Watchlist", icon: Bookmark },
-  { to: "/diary", label: "Diary", icon: BookOpen },
-  { to: "/following", label: "Following", icon: UserPlus },
-  { to: "/friends", label: "Friends", icon: Users },
-  { to: "/settings", label: "Settings", icon: Settings },
+  { to: "/films", label: "Films", icon: Clapperboard, exact: false },
+  { to: "/trending", label: "Trending", icon: TrendingUp, exact: false },
+  { to: "/watchlist", label: "Watchlist", icon: Bookmark, exact: false },
+  { to: "/diary", label: "Diary", icon: BookOpen, exact: false },
+  { to: "/following", label: "Following", icon: UserPlus, exact: false },
+  { to: "/friends", label: "Friends", icon: Users, exact: false },
+  { to: "/settings", label: "Settings", icon: Settings, exact: false },
 ] as const;
 
 export function Header() {
