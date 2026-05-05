@@ -14,7 +14,7 @@ const sortOptions = [
 ] as const;
 
 const searchSchema = z.object({
-  genre: fallback(z.string().optional(), undefined),
+  genre: fallback(z.string(), "").optional(),
   sort: fallback(z.enum(["rating", "newest", "oldest", "shortest", "title"]), "rating").default("rating"),
 });
 
