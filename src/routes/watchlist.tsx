@@ -17,7 +17,7 @@ export const Route = createFileRoute("/watchlist")({
 });
 
 function WatchlistPage() {
-  const saved = films.slice(0, 5);
+  const saved = films;
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -26,7 +26,7 @@ function WatchlistPage() {
           <Bookmark className="h-6 w-6 text-primary" />
           <div>
             <h1 className="font-display text-3xl tracking-tight">Your watchlist</h1>
-            <p className="text-sm text-muted-foreground">{saved.length} films queued up.</p>
+            <p className="text-sm text-muted-foreground">{saved.length} films queued up across every genre.</p>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
@@ -35,7 +35,7 @@ function WatchlistPage() {
           ))}
         </div>
         <p className="mt-10 text-sm text-muted-foreground">
-          Browse the full <Link to="/films" className="text-primary hover:underline">library</Link> to add more.
+          Browse the full <Link to="/films" className="text-primary hover:underline">library</Link> to refine.
         </p>
       </main>
     </div>

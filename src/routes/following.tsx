@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/Header";
+import { films } from "@/data/films";
 import { UserPlus } from "lucide-react";
 
 export const Route = createFileRoute("/following")({
@@ -14,11 +15,20 @@ export const Route = createFileRoute("/following")({
   component: FollowingPage,
 });
 
+const verbs = ["Logged", "Reviewed", "Liked", "Added to watchlist", "Rewatched", "Recommended"];
 const people = [
-  { name: "Mira Okafor", handle: "@mira", films: 412, last: "Logged Lawrence of Arabia" },
-  { name: "Daichi Sato", handle: "@daichi", films: 1207, last: "Reviewed Spirited Away" },
-  { name: "Lena Vasquez", handle: "@lenav", films: 88, last: "Added 3 to watchlist" },
-  { name: "Theo Brandt", handle: "@theo", films: 562, last: "Liked your review" },
+  { name: "Mira Okafor", handle: "@mira", films: 412 },
+  { name: "Daichi Sato", handle: "@daichi", films: 1207 },
+  { name: "Lena Vasquez", handle: "@lenav", films: 88 },
+  { name: "Theo Brandt", handle: "@theo", films: 562 },
+  { name: "Priya Raman", handle: "@priya", films: 743 },
+  { name: "Marco Lehmann", handle: "@marco", films: 211 },
+  { name: "Aïsha Diallo", handle: "@aisha", films: 994 },
+  { name: "Jonas Park", handle: "@jonas", films: 156 },
+  { name: "Sofía Ríos", handle: "@sofi", films: 488 },
+  { name: "Henrik Aalto", handle: "@henrik", films: 1320 },
+  { name: "Wei Chen", handle: "@wei", films: 67 },
+  { name: "Naledi Khumalo", handle: "@nale", films: 305 },
 ];
 
 function FollowingPage() {
@@ -30,22 +40,30 @@ function FollowingPage() {
           <UserPlus className="h-6 w-6 text-primary" />
           <div>
             <h1 className="font-display text-3xl tracking-tight">Following</h1>
-            <p className="text-sm text-muted-foreground">{people.length} cinephiles.</p>
+            <p className="text-sm text-muted-foreground">{people.length} cinephiles with taste across every genre.</p>
           </div>
         </div>
         <ul className="divide-y divide-border/60 rounded-lg border border-border/60 bg-card/50">
-          {people.map((p) => (
-            <li key={p.handle} className="flex items-center gap-4 p-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-[var(--gold)] font-display text-lg text-primary-foreground">
-                {p.name.charAt(0)}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="truncate font-medium">{p.name} <span className="text-xs text-muted-foreground">{p.handle}</span></p>
-                <p className="truncate text-xs text-muted-foreground">{p.films} films · {p.last}</p>
-              </div>
-              <button className="shrink-0 rounded-md border border-border px-3 py-1 text-xs hover:bg-accent/40">Following</button>
-            </li>
-          ))}
+          {people.map((p, i) => {
+            const film = films[i % films.length];
+            const verb = verbs[i % verbs.length];
+            return (
+              <li key={p.handle} className="flex items-center gap-4 p-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-[var(--gold)] font-display text-lg text-primary-foreground">
+                  {p.name.charAt(0)}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate font-medium">
+                    {p.name} <span className="text-xs text-muted-foreground">{p.handle}</span>
+                  </p>
+                  <p className="truncate text-xs text-muted-foreground">
+                    {p.films} films · {verb} <span className="text-foreground/80">{film.title}</span>
+                  </p>
+                </div>
+                <button className="shrink-0 rounded-md border border-border px-3 py-1 text-xs hover:bg-accent/40">Following</button>
+              </li>
+            );
+          })}
         </ul>
       </main>
     </div>
