@@ -100,7 +100,7 @@ function FilmDetail() {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {film.genres.map((g) => (
+              {film.genres.map((g: string) => (
                 <span key={g} className="rounded-full border border-border px-3 py-1 text-xs">
                   {g}
                 </span>
